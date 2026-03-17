@@ -1,27 +1,34 @@
 #include <stdio.h>
-#include <stdlib.h>
 
-int *create_array(int n)
-{
-    return (int *)malloc(n * sizeof(int));
-}
+void swap(int *a, int *b);
 
 int main()
 {
-    int n = 5;
-    int *arr = create_array(n); // 调用指针函数
-    if (arr == NULL)
-    {
-        printf("内存分配失败\n");
-        return 1;
-    }
-    // 使用数组
-    for (int i = 0; i < n; i++)
-        arr[i] = i * 10;
-    for (int i = 0; i < n; i++)
-        printf("%d ", arr[i]);
-    printf("\n");
+    int x = 1;
+    int y = 2;
 
-    free(arr); // 释放内存
+    printf("=== 交換前 ===\n");
+    printf("x 的值: %d, 地址: %p\n", x, (void *)&x);
+    printf("y 的值: %d, 地址: %p\n", y, (void *)&y);
+
+    // 呼叫交換函數
+    swap(&x, &y);
+
+    printf("\n=== 交換後 ===\n");
+    printf("x 的值: %d, 地址: %p\n", x, (void *)&x);
+    printf("y 的值: %d, 地址: %p\n", y, (void *)&y);
+
     return 0;
+}
+
+void swap(int *a, int *b)
+{
+    // 這裡印出 a 和 b 指向哪裡，驗證它們是否收到了 x 和 y 的地址
+    printf("\n[進入 swap 函數]\n");
+    printf("指標 a 指向的地址: %p (即 x 的地址)\n", (void *)a);
+    printf("指標 b 指向的地址: %p (即 y 的地址)\n", (void *)b);
+
+    int temp = *a;
+    *a = *b;
+    *b = temp;
 }
