@@ -11,12 +11,14 @@
  * 的總大小至少等於其最大成員的大小，並且必須是其最大對齊要求（Alignment）的整數倍（可能會有末尾填充字節
  * Padding）。
  */
-union MyUnionData {
+union MyUnionData
+{
   int i;
   float f;
   char str;
 };
-int main() {
+int main()
+{
   char source[] = "Hello World";
 
   // union 在同一時間只能初始化「一個」成員
